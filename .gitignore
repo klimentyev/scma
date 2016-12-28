@@ -1,0 +1,8 @@
+*.asv
+*.m~
+*.bak
+*.mat
+*.mexa64
+*.mexw64
+*.fig
+/codegen
