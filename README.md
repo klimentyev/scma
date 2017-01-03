@@ -23,6 +23,18 @@ Unfortunately, the program executions very slow in **Octave**.
 
 The mex function generation in **Matlab** increases the speed of execution approximately in 15 times.
 
+## Channel models
+
+* AWGN channel: `h = ones(K,V,N)`
+
+* Uplink, Rayleigh channel without diversity: `h = 1/sqrt(2)*(repmat(randn(1,V,N),K,1)+1j*repmat(randn(1,V,N),K,1))`
+
+* Rayleigh channel with diversity: `h = 1/sqrt(2)*(randn(K,V,N)+1j*randn(K,V,N))`
+
+* Downlink, Rayleigh channel without diversity: `h = 1/sqrt(2)*(repmat(repmat(randn(1,1,N),K,1),1,V)+1j*(repmat(repmat(randn(1,1,N),K,1),1,V)))`
+
+* Downlink, Rayleigh channel with diversity: `h = 1/sqrt(2)*(repmat(randn(K,1,N),1,V)+1j*repmat(randn(K,1,N),1,V))`
+
 ## Running
 
 Run script `simulation.m`.
