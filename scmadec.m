@@ -38,21 +38,27 @@ for k = 1:V
     F(unique(I),k) = 1;
 end
 
+df = sum(F(1,:));
+
 N   = size(y, 2);
 LLR = zeros(log2(M)*V, N);
 
 % Step 1: Initial calculations
 for jj = 1:N
-    f = zeros(M, M, M, K);
+    sz = [M*ones(1, df), K]; % size
+    f  = zeros(sz);
 
     for k = 1:K % resourses
         ind = find(F(k,:)==1); % non-zero elements, paths
-        for m1 = 1:M
-            for m2 = 1:M
-                for m3 = 1:M
-                    f(m1,m2,m3,k) = -(1/N0)*abs(y(k,jj)-(CB(k,m1,ind(1))*h(k,ind(1),jj)+CB(k,m2,ind(2))*h(k,ind(2),jj)+CB(k,m3,ind(3))*h(k,ind(3),jj)))^2;
-                end
+        L   = M^df;
+        for m = 1:L
+            S = 0;
+            idx = de2bi(m-1, df, M, 'left-msb')+1;
+            for d = 1:df
+                S = S + CB(k,idx(d),ind(d))*h(k,ind(d),jj);
             end
+            indc = num2cell([idx, k]);
+            f(sub2ind(sz, indc{:})) = -(1/N0)*abs(y(k,jj)-S)^2;
         end
     end
 
