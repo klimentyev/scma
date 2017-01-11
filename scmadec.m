@@ -24,7 +24,6 @@ function LLR = scmadec(y, CB, h, N0, Nit)
 %
 %  LLR - Log-Likelihood Ratio (size (log2(M)*V)xN)
 
-
 K = size(CB, 1);
 M = size(CB, 2);
 V = size(CB, 3);
