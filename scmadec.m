@@ -58,7 +58,7 @@ for jj = 1:N
 
     Ap = 1/M;
     Igv = zeros(K, V, M);
-    Ivg = cat(3, log((1/M)*ones(K, V)), log((1/M)*ones(K, V)), log((1/M)*ones(K, V)), log((1/M)*ones(K, V)));
+    Ivg = log(Ap*ones(K, V, M));
 
 % Step 2: Iterative procedure
     for iter = 1:Nit
