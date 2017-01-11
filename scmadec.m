@@ -67,33 +67,33 @@ for jj = 1:N
             ind = find(F(k,:)==1);
 
             for m1 = 1:M
-                maxIgv = zeros(1, M*M);
+                sIgv = zeros(1, M*M);
                 for m2 = 1:M
                     for m3 = 1:M
-                        maxIgv((m2-1)*M+m3) = f(m1,m2,m3,k)+Ivg(k,ind(2),m2)+Ivg(k,ind(3),m3);
+                        sIgv((m2-1)*M+m3) = f(m1,m2,m3,k)+Ivg(k,ind(2),m2)+Ivg(k,ind(3),m3);
                     end
                 end
-                Igv(k,ind(1),m1) = log_sum_exp(maxIgv);
+                Igv(k,ind(1),m1) = log_sum_exp(sIgv);
             end
 
             for m2 = 1:M
-                maxIgv = zeros(1, M*M);
+                sIgv = zeros(1, M*M);
                 for m1 = 1:M
                     for m3 = 1:M
-                        maxIgv((m1-1)*M+m3) = f(m1,m2,m3,k)+Ivg(k,ind(1),m1)+Ivg(k,ind(3),m3);
+                        sIgv((m1-1)*M+m3) = f(m1,m2,m3,k)+Ivg(k,ind(1),m1)+Ivg(k,ind(3),m3);
                     end
                 end
-                Igv(k,ind(2),m2) = log_sum_exp(maxIgv);
+                Igv(k,ind(2),m2) = log_sum_exp(sIgv);
             end
 
             for m3 = 1:M
-                maxIgv = zeros(1, M*M);
+                sIgv = zeros(1, M*M);
                 for m1 = 1:M
                     for m2 = 1:M
-                        maxIgv((m1-1)*M+m2) = f(m1,m2,m3,k)+Ivg(k,ind(1),m1)+Ivg(k,ind(2),m2);
+                        sIgv((m1-1)*M+m2) = f(m1,m2,m3,k)+Ivg(k,ind(1),m1)+Ivg(k,ind(2),m2);
                     end
                 end
-                Igv(k,ind(3),m3) = log_sum_exp(maxIgv);
+                Igv(k,ind(3),m3) = log_sum_exp(sIgv);
             end
         end
 
