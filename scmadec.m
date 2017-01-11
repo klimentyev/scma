@@ -38,7 +38,7 @@ for k = 1:V
     F(unique(I),k) = 1;
 end
 
-N   = size(y, log2(M));
+N   = size(y, 2);
 LLR = zeros(log2(M)*V, N);
 
 % Step 1: Initial calculations
