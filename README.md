@@ -58,3 +58,5 @@ Thanks to Alexander B. Sergienko, PhD, Saint Petersburg Electrotechnical Univers
 * [SCMA detection with channel estimation error and resource block diversity](http://ieeexplore.ieee.org/document/7491765/)
 
 * [A low-complexity SCMA detector for AWGN channel based on solving overdetermined systems of linear equations](http://ieeexplore.ieee.org/document/7779331/)
+
+* [Error probability bounds for SCMA signals](http://ieeexplore.ieee.org/document/7910519/)
