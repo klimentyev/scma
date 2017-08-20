@@ -60,3 +60,5 @@ Thanks to Alexander B. Sergienko, PhD, Saint Petersburg Electrotechnical Univers
 * [A low-complexity SCMA detector for AWGN channel based on solving overdetermined systems of linear equations](http://ieeexplore.ieee.org/document/7779331/)
 
 * [Error probability bounds for SCMA signals](http://ieeexplore.ieee.org/document/7910519/)
+
+* [SCMA Codebooks Optimization Based on Genetic Algorithm](http://ieeexplore.ieee.org/document/8011314/)
