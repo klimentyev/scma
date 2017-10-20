@@ -62,3 +62,5 @@ Thanks to Alexander B. Sergienko, PhD, Saint Petersburg Electrotechnical Univers
 * [Error probability bounds for SCMA signals](http://ieeexplore.ieee.org/document/7910519/)
 
 * [SCMA Codebooks Optimization Based on Genetic Algorithm](http://ieeexplore.ieee.org/document/8011314/)
+
+* [Spectral efficiency of uplink SCMA system with CSI estimation](http://ieeexplore.ieee.org/document/8071339/)
