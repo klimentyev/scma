@@ -64,3 +64,5 @@ Thanks to Alexander B. Sergienko, PhD, Saint Petersburg Electrotechnical Univers
 * [SCMA Codebooks Optimization Based on Genetic Algorithm](http://ieeexplore.ieee.org/document/8011314/)
 
 * [Spectral efficiency of uplink SCMA system with CSI estimation](http://ieeexplore.ieee.org/document/8071339/)
+
+* [Decision feedback for channel estimation in SCMA system with diversity](http://ieeexplore.ieee.org/document/8317029/) 
