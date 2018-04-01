@@ -100,8 +100,9 @@ for jj = 1:N
         for k = 1:V
             ind = find(F(:,k)==1);
             for n = 1:M
-                Ivg(ind(1),k,n) = log(Ap)+Igv(ind(2),k,n)-log(sum(exp(Igv(ind(2),k,:))));
-                Ivg(ind(2),k,n) = log(Ap)+Igv(ind(1),k,n)-log(sum(exp(Igv(ind(1),k,:))));
+                % analogue of normalization in MPA, it can be removed (log(sum(exp(...))))
+                Ivg(ind(1),k,n) = Igv(ind(2),k,n)-log(sum(exp(Igv(ind(2),k,:))));
+                Ivg(ind(2),k,n) = Igv(ind(1),k,n)-log(sum(exp(Igv(ind(1),k,:))));
             end
         end
 
