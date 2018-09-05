@@ -40,8 +40,9 @@ end
 N   = size(y, 2);
 LLR = zeros(log2(M)*V, N);
 
-% Step 1: Initial calculations
 for jj = 1:N
+
+    % Step 1: Initial calculations
     f = zeros(M, M, M, K);
 
     for k = 1:K % resourses
