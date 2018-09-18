@@ -40,7 +40,7 @@ end
 N   = size(y, 2);
 LLR = zeros(log2(M)*V, N);
 
-for jj = 1:N
+parfor jj = 1:N
 
     % Step 1: Initial calculations
     f = zeros(M, M, M, K);
@@ -118,8 +118,11 @@ for jj = 1:N
         end
     end
 
+    LLR_tmp = zeros(log2(M)*V, 1); % temp variable for parallel work
+
     for k = 1:V
-        LLR(2*k-1,jj) = log((exp(Q(1,k))+exp(Q(2,k)))/((exp(Q(3,k))+exp(Q(4,k)))));
-        LLR(2*k,jj)   = log((exp(Q(1,k))+exp(Q(3,k)))/((exp(Q(2,k))+exp(Q(4,k)))));
+        LLR_tmp(2*k-1) = log((exp(Q(1,k))+exp(Q(2,k)))/((exp(Q(3,k))+exp(Q(4,k)))));
+        LLR_tmp(2*k)   = log((exp(Q(1,k))+exp(Q(3,k)))/((exp(Q(2,k))+exp(Q(4,k)))));
     end
+    LLR(:,jj) = LLR_tmp;
 end
