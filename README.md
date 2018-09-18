@@ -18,6 +18,10 @@ The main features of project:
 
 * current version is only demonstration and  works with the next SCMA codebooks parameters: *M* = 4, *d_f* = 3 and the number of non-zero elements in codewords is equal 2 (notes from paper [M. Taherzadeh, H. Nikopour, A. Bayesteh and Hadi Baligh. SCMA Codebook Design](https://arxiv.org/pdf/1408.3653v1.pdf)).
 
+* outer `parfor` loop for SCMA signals
+
+* [MEX implemantation](https://github.com/klimentyev/scma_mex) of the algorithm (C source)
+
 The code is written in **Matlab**, but fully compatible with **Octave**.
 Unfortunately, the program executions very slow in **Octave**.
 
