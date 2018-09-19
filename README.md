@@ -22,7 +22,7 @@ The main features of project:
 
 * [MEX implemantation](https://github.com/klimentyev/scma_mex) of the algorithm (C source)
 
-The code is written in **Matlab**, but fully compatible with **Octave** (with the exception of `parfor` loop, but Octave has `parallel execution package`).
+The code is written in **Matlab**, but fully compatible with **Octave** (`parfor` loop in Octave needs `endparfor` instead of `end`; for Octave 4.2.2 I have no parallel work, `parallel execution package` may be helpful).
 Unfortunately, the program executions very slow in **Octave**.
 
 The mex function generation in **Matlab** increases the speed of execution approximately in 15 times.
