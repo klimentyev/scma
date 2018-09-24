@@ -56,9 +56,9 @@ parfor jj = 1:N
         end
     end
 
-    Ap = 1/M;
+    Ap  = log(1/M);
     Igv = zeros(K, V, M);
-    Ivg = log(Ap*ones(K, V, M));
+    Ivg = Ap;
 
 % Step 2: Iterative procedure
     for iter = 1:Nit
@@ -114,7 +114,7 @@ parfor jj = 1:N
     for k = 1:V
         ind = find(F(:,k)==1);
         for m = 1:M
-            Q(m,k) = log(Ap)+Igv(ind(1),k,m)+Igv(ind(2),k,m);
+            Q(m,k) = Ap+Igv(ind(1),k,m)+Igv(ind(2),k,m);
         end
     end
 
