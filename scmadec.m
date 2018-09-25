@@ -58,7 +58,7 @@ parfor jj = 1:N
 
     Ap  = log(1/M);
     Igv = zeros(K, V, M);
-    Ivg = Ap;
+    Ivg = Ap*ones(K, V, M);
 
 % Step 2: Iterative procedure
     for iter = 1:Nit
