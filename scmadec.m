@@ -40,6 +40,8 @@ end
 N   = size(y, 2);
 LLR = zeros(log2(M)*V, N);
 
+Noise = 1/N0;
+
 parfor jj = 1:N
 
     % Step 1: Initial calculations
@@ -50,7 +52,8 @@ parfor jj = 1:N
         for m1 = 1:M
             for m2 = 1:M
                 for m3 = 1:M
-                    f(m1,m2,m3,k) = -(1/N0)*abs(y(k,jj)-(CB(k,m1,ind(1))*h(k,ind(1),jj)+CB(k,m2,ind(2))*h(k,ind(2),jj)+CB(k,m3,ind(3))*h(k,ind(3),jj)))^2;
+                    d = y(k,jj)-(CB(k,m1,ind(1))*h(k,ind(1),jj)+CB(k,m2,ind(2))*h(k,ind(2),jj)+CB(k,m3,ind(3))*h(k,ind(3),jj));
+                    f(m1,m2,m3,k) = -Noise*sum(real(d)^2+imag(d)^2);
                 end
             end
         end
