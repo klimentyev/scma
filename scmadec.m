@@ -103,10 +103,12 @@ parfor jj = 1:N
         % Ivg update
         for k = 1:V
             ind = find(F(:,k)==1);
+            s1 = log(sum(exp(Igv(ind(1),k,:))));
+            s2 = log(sum(exp(Igv(ind(2),k,:))));
             for n = 1:M
-                % analogue of normalization in MPA, it can be removed (log(sum(exp(...)))), but at high SNR and/or number of iterations NaN LLR values can be exist, so Max-Log-MPA is required
-                Ivg(ind(1),k,n) = Igv(ind(2),k,n)-log(sum(exp(Igv(ind(2),k,:))));
-                Ivg(ind(2),k,n) = Igv(ind(1),k,n)-log(sum(exp(Igv(ind(1),k,:))));
+                % analogue of normalization in MPA, it can be removed (s1 and s2), but at high SNR and/or number of iterations NaN LLR values can be exist, so Max-Log-MPA is required
+                Ivg(ind(1),k,n) = Igv(ind(2),k,n)-s2;
+                Ivg(ind(2),k,n) = Igv(ind(1),k,n)-s1;
             end
         end
 
