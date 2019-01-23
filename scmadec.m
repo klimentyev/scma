@@ -53,15 +53,14 @@ parfor jj = 1:N
             for m2 = 1:M
                 for m3 = 1:M
                     d = y(k,jj)-(CB(k,m1,ind(1))*h(k,ind(1),jj)+CB(k,m2,ind(2))*h(k,ind(2),jj)+CB(k,m3,ind(3))*h(k,ind(3),jj));
-                    f(m1,m2,m3,k) = -Noise*sum(real(d)^2+imag(d)^2);
+                    f(m1,m2,m3,k) = -sum(real(d)^2+imag(d)^2);
                 end
             end
         end
     end
 
-    Ap  = log(1/M);
     Igv = zeros(K, V, M);
-    Ivg = Ap*ones(K, V, M);
+    Ivg = zeros(K, V, M);
 
 % Step 2: Iterative procedure
     for iter = 1:Nit
@@ -76,7 +75,7 @@ parfor jj = 1:N
                         sIgv((m2-1)*M+m3) = f(m1,m2,m3,k)+Ivg(k,ind(2),m2)+Ivg(k,ind(3),m3);
                     end
                 end
-                Igv(k,ind(1),m1) = log_sum_exp(sIgv);
+                Igv(k,ind(1),m1) = max(sIgv);
             end
 
             for m2 = 1:M
@@ -86,7 +85,7 @@ parfor jj = 1:N
                         sIgv((m1-1)*M+m3) = f(m1,m2,m3,k)+Ivg(k,ind(1),m1)+Ivg(k,ind(3),m3);
                     end
                 end
-                Igv(k,ind(2),m2) = log_sum_exp(sIgv);
+                Igv(k,ind(2),m2) = max(sIgv);
             end
 
             for m3 = 1:M
@@ -96,19 +95,16 @@ parfor jj = 1:N
                         sIgv((m1-1)*M+m2) = f(m1,m2,m3,k)+Ivg(k,ind(1),m1)+Ivg(k,ind(2),m2);
                     end
                 end
-                Igv(k,ind(3),m3) = log_sum_exp(sIgv);
+                Igv(k,ind(3),m3) = max(sIgv);
             end
         end
 
         % Ivg update
         for k = 1:V
             ind = find(F(:,k)==1);
-            s1 = log(sum(exp(Igv(ind(1),k,:))));
-            s2 = log(sum(exp(Igv(ind(2),k,:))));
             for n = 1:M
-                % analogue of normalization in MPA, it can be removed (s1 and s2), but at high SNR and/or number of iterations NaN LLR values can be exist, so Max-Log-MPA is required
-                Ivg(ind(1),k,n) = Igv(ind(2),k,n)-s2;
-                Ivg(ind(2),k,n) = Igv(ind(1),k,n)-s1;
+                Ivg(ind(1),k,n) = Igv(ind(2),k,n);
+                Ivg(ind(2),k,n) = Igv(ind(1),k,n);
             end
         end
 
@@ -119,15 +115,15 @@ parfor jj = 1:N
     for k = 1:V
         ind = find(F(:,k)==1);
         for m = 1:M
-            Q(m,k) = Ap+Igv(ind(1),k,m)+Igv(ind(2),k,m);
+            Q(m,k) = Igv(ind(1),k,m)+Igv(ind(2),k,m);
         end
     end
 
     LLR_tmp = zeros(log2(M)*V, 1); % temp variable for parallel work
 
     for k = 1:V
-        LLR_tmp(2*k-1) = log((exp(Q(1,k))+exp(Q(2,k)))/((exp(Q(3,k))+exp(Q(4,k)))));
-        LLR_tmp(2*k)   = log((exp(Q(1,k))+exp(Q(3,k)))/((exp(Q(2,k))+exp(Q(4,k)))));
+        LLR_tmp(2*k-1) = Noise*(max(Q(1,k), Q(2,k)) - max(Q(3,k), Q(4,k)));
+        LLR_tmp(2*k)   = Noise*(max(Q(1,k), Q(3,k)) - max(Q(2,k), Q(4,k)));
     end
     LLR(:,jj) = LLR_tmp;
 end
