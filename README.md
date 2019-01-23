@@ -14,7 +14,7 @@ The main features of project:
 
 * codebooks are from [presentation](http://www.innovateasia.com/5g/images/pdf/1st%205G%20Algorithm%20Innovation%20Competition-ENV1.0%20-%20SCMA.pdf)
 
-* Log-MPA algorithm is used (for improve of performance Max-Log-MPA is required, where calculation of exp and dynamic range correction at high SNR and/or number of iterations are not required)
+* Log-MPA algorithm is used (for improve of performance Max-Log-MPA (branch `max_log_mpa`, but needs additional testing) is required, where calculation of exp and dynamic range correction at high SNR and/or number of iterations are not required)
 
 * current version is only demonstration and  works with the next SCMA codebooks parameters: *M* = 4, *d_f* = 3 and the number of non-zero elements in codewords is equal 2 (notes from paper [M. Taherzadeh, H. Nikopour, A. Bayesteh and Hadi Baligh. SCMA Codebook Design](https://arxiv.org/pdf/1408.3653v1.pdf)).
 
